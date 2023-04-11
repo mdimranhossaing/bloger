@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\HomeController;
@@ -58,3 +59,7 @@ Route::controller(TagController::class)->group(function(){
     Route::put('posts/tag/{tag}/update', 'update')->name('admin.tag.update');
     Route::delete('posts/tag/{tag}/delete', 'delete')->name('admin.tag.delete');
 });
+
+Route::resources([
+    'customers'  =>  CustomerController::class
+]);

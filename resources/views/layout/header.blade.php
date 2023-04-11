@@ -77,6 +77,7 @@
 
                                     <li><a href="{{route('homepage')}}">Home</a></li>
                                     <li><a href="{{route('blog')}}">Our Blog</a></li>
+                                    <li><a href="{{route('customers.index')}}">All Customer</a></li>
                                 </ul>
                                 <!-- End Mainmanu Nav -->
                             </nav>
