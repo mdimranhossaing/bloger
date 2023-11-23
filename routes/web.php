@@ -27,9 +27,11 @@ Route::controller(UserController::class)->group(function() {
     Route::post('/user/login/authenticate', 'authenticate')->name('user.login.authenticate');
     Route::get('/dashboard/home', 'dashboard')->name('dashboard');
     Route::post('/logout', 'logout')->name('logout');
-    Route::get('/user/profile', 'profile')->name('user.profile');
     Route::put('/user/update', 'update')->name('user.update');
-    Route::get('users', 'all_users')->name('users');
+    Route::get('/user/profile', 'profile')->name('user.profile');
+    Route::get('user/all-users', 'index')->name('all.users');
+    Route::get('user/create', 'create')->name('create.user');
+    Route::post('user/create/store', 'create_store')->name('create.user.store');
 });
 
 // Post

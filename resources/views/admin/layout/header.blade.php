@@ -25,6 +25,7 @@
             height: 2.1rem;
             width: 2.1rem;
             object-fit: cover;
+            background-position: center;
         }
 
         .error {

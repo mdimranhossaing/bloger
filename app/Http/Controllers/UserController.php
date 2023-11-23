@@ -177,10 +177,48 @@ class UserController extends Controller
     }
 
     // All users
-    public function all_users()
+    public function index()
     {
         $data['users'] = User::orderBy('id', 'DESC')->get();
         $data['title'] = 'All Users';
         return view('admin.user.index',$data);
+    }
+
+    public function create()
+    {
+        $data['users'] = User::orderBy('id', 'DESC')->get();
+        $data['title'] = 'All Users';
+        return view('admin.user.create',$data);
+    }
+
+    /**
+     * Store a new user.
+     */
+    public function create_store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:100',
+            'username' => 'required|string|max:100|unique:users,username',
+            'email' => 'required|email|max:250|unique:users',
+            'photo' => 'required|mimes:png,jpg',
+            'password' => 'required|min:8|confirmed'
+        ]);
+
+        if ($request->hasFile('photo')) {
+            $photo = $request->file('photo');
+            $photo_name = time() . '.' . $photo->extension();
+            $photo->move(public_path('upload'), $photo_name);
+        }
+
+        User::create([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'photo' => $photo_name,
+            'password' => Hash::make($request->password)
+        ]);
+
+        return redirect()->route('all.users')
+            ->withSuccess('User added successfully!');
     }
 }

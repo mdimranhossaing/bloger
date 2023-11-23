@@ -7,9 +7,13 @@
 
     <style>
         .admin-post-thumb {
-            width: 80px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             object-fit: cover;
+            background-position: center center;
+            border-radius: 50%;
+            box-sizing: border-box;
+            border: 1px solid magenta;
         }
     </style>
 @endsection
@@ -52,7 +56,6 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Joining Date</th>
-                            <th>Updated at</th>
                             <th width="80">Actions</th>
                         </tr>
                     </thead>
@@ -67,8 +70,7 @@
                                     <td>{{ $user->username }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td>{{ date('s:i:h - d M Y', strtotime($user->created_at)) }}</td>
-                                    <td>{{ date('s:i:h - d M Y', strtotime($user->updated_at)) }}</td>
+                                    <td>{{ date('d M Y', strtotime($user->created_at)) }}</td>
                                     <td width="80">
                                         <a class="badge-btn badge-info" href="{{route('admin.single-post', $user->id)}}"><i
                                                 class="fa fa-binoculars"></i></a>
@@ -90,7 +92,6 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Created at</th>
-                            <th>Updated at</th>
                             <th width="80">Actions</th>
                         </tr>
                     </tfoot>

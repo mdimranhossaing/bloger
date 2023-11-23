@@ -127,10 +127,10 @@
                 </li>
 
                 {{-- Users Menu --}}
-                <li class="nav-item {{ request()->segment(1) == 'users' ? 'menu-open' : '' }}">
+                <li class="nav-item {{ request()->segment(1) == 'user' ? 'menu-open' : '' }}">
                     <a href="{{ route('admin.all-posts') }}"
-                        class="nav-link {{ request()->segment(1) == 'users' ? 'active' : '' }}">
-                        <i class="nav-icon far fa-plus-square"></i>
+                        class="nav-link {{ request()->segment(1) == 'user' ? 'active' : '' }}">
+                        <i class="nav-icon fa fa-user"></i>
                         <p>
                             Users
                             <i class="fas fa-angle-left right"></i>
@@ -139,60 +139,29 @@
                     <ul class="nav nav-treeview">
 
                         <li class="nav-item">
-                            <a href="{{ route('users') }}"
-                                class="nav-link {{ request()->segment(1) == 'users' ? 'active' : '' }}">
+                            <a href="{{ route('user.profile') }}"
+                                class="nav-link {{ request()->segment('2') == 'profile' ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>My Profile</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('all.users') }}"
+                                class="nav-link {{ request()->segment(2) == 'all-users' ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>All Users</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ route('post.create') }}"
+                            <a href="{{ route('create.user') }}"
                                 class="nav-link {{ request()->segment(2) == 'create' ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add New User</p>
                             </a>
                         </li>
 
-                        <li class="nav-item {{ request()->segment(2) == 'category' ? 'menu-open' : '' }}">
-                            <a href="{{route('admin.all-categories')}}" class="nav-link  {{ request()->segment(2) == 'category' ? 'link-hover' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>
-                                    My Profile
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{route('admin.all-categories')}}" class="nav-link {{ request()->segment(3) == 'create' ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>All Categories</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                </li>
-
-                {{-- Dashboard Menu --}}
-                <li class="nav-item {{ request()->segment('1') == 'user' ? 'menu-open' : '' }}">
-                    <a href="{{ route('user.profile') }}"
-                        class="nav-link {{ request()->segment('1') == 'user' ? 'active' : '' }}">
-                        <i class="nav-icon far fa-plus-square"></i>
-                        <p>
-                            User
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('user.profile') }}"
-                                class="nav-link {{ request()->segment('2') == 'profile' ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>profile</p>
-                            </a>
-                        </li>
                     </ul>
                 </li>
 
