@@ -29,6 +29,7 @@ Route::controller(UserController::class)->group(function() {
     Route::post('/logout', 'logout')->name('logout');
     Route::get('/user/profile', 'profile')->name('user.profile');
     Route::put('/user/update', 'update')->name('user.update');
+    Route::get('users', 'all_users')->name('users');
 });
 
 // Post
@@ -60,6 +61,7 @@ Route::controller(TagController::class)->group(function(){
     Route::delete('posts/tag/{tag}/delete', 'delete')->name('admin.tag.delete');
 });
 
+// Customers
 Route::resources([
     'customers'  =>  CustomerController::class
 ]);

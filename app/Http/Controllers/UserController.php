@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -173,5 +174,13 @@ class UserController extends Controller
         return redirect()->route('user.login')
             ->withSuccess('You have logged out successfully!');
         ;
+    }
+
+    // All users
+    public function all_users()
+    {
+        $data['users'] = User::orderBy('id', 'DESC')->get();
+        $data['title'] = 'All Users';
+        return view('admin.user.index',$data);
     }
 }
