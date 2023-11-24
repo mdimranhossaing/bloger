@@ -156,7 +156,7 @@
 
                         <li class="nav-item">
                             <a href="{{ route('create.user') }}"
-                                class="nav-link {{ request()->segment(2) == 'create' ? 'active' : '' }}">
+                                class="nav-link {{ request()->segment(2) == 'create-user' ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add New User</p>
                             </a>

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -103,6 +103,7 @@ class UserController extends Controller
     {
         if (Auth::check()) {
             $data['title'] = 'Dashboard';
+            $data['totalusers'] = User::count('id');
             return view('admin.auth.dashboard',$data);
         }
 
@@ -220,5 +221,64 @@ class UserController extends Controller
 
         return redirect()->route('all.users')
             ->withSuccess('User added successfully!');
+    }
+
+    public function edit(User $user)
+    {
+        $data['user'] = $user;
+        $data['title'] = 'Edit post';
+        return view('admin.user.edit',$data);
+    }
+
+    
+
+    public function update_user(Request $request, $id)
+    {
+        
+        $user = User::findOrFail($id);
+
+        $request->validate([
+            'name'      => 'string|max:100',
+            'username'  => 'string|max:100',
+            'photo'     => 'mimes:png,jpg',
+        ]);
+
+        if ($request->hasFile('photo')) {
+            $photo = $request->file('photo');
+            $photo_name = time() . '.' . $photo->extension();
+            $photo->move(public_path('upload'), $photo_name);
+
+            $old_photo_path = public_path('upload/') . $user->photo;
+
+            if(\File::exists($old_photo_path)) {
+                \File::delete($old_photo_path);
+            }
+        } else {
+            $photo_name = $user->photo;
+        }
+
+        $user->update([
+            'name' => $request->name,
+            'username' => $request->username,
+            'photo' => $photo_name
+        ]);
+
+        return redirect()->route('all.users')->withSuccess('User Updated successfully!');
+        
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function delete(string $id)
+    {
+        $user = User::findOrFail($id);
+        $old_photo_path = public_path('upload/') . $user->photo;
+
+        if(\File::exists($old_photo_path)) {
+            \File::delete($old_photo_path);
+        }
+        $user->delete();
+        return redirect()->route('all.users')->withSuccess('User successfully delete!');
     }
 }

@@ -30,8 +30,11 @@ Route::controller(UserController::class)->group(function() {
     Route::put('/user/update', 'update')->name('user.update');
     Route::get('/user/profile', 'profile')->name('user.profile');
     Route::get('user/all-users', 'index')->name('all.users');
-    Route::get('user/create', 'create')->name('create.user');
+    Route::get('user/create-user', 'create')->name('create.user');
     Route::post('user/create/store', 'create_store')->name('create.user.store');
+    Route::get('user/{user}/edit', 'edit')->name('user.edit');
+    Route::put('/user/{user}/update-user', 'update_user')->name('update.user');
+    Route::delete('user/{user}/delete', 'delete')->name('user.delete');
 });
 
 // Post

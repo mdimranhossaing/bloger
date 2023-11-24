@@ -74,10 +74,10 @@
                                     <td width="80">
                                         <a class="badge-btn badge-info" href="{{route('admin.single-post', $user->id)}}"><i
                                                 class="fa fa-binoculars"></i></a>
-                                        <a class="badge-btn badge-success" href="{{route('post.edit', $user->id)}}"><i
+                                        <a class="badge-btn badge-success" href="{{route('user.edit', $user->id)}}"><i
                                                 class="fas fa-edit"></i></a>
                                         <a class="badge-btn badge-danger"
-                                            href="javascript:deletePost('{{route('post.delete', $user->id)}}')"><i
+                                            href="javascript:deletePost('{{route('user.delete', $user->id)}}')"><i
                                                 class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
