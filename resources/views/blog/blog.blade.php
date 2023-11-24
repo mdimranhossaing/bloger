@@ -59,7 +59,8 @@
                                 <div class="post-content">
                                     <div class="post-cat">
                                         <div class="post-cat-list">
-                                            <a class="hover-flip-item-wrapper" href="{{route('blog.category', $post->category->slug)}}">
+                                            <a class="hover-flip-item-wrapper"
+                                                href="{{ route('blog.category', $post->category->slug) }}">
                                                 <span class="hover-flip-item">
                                                     <span
                                                         data-text="{{ $post->category->name }}">{{ $post->category->name }}</span>
@@ -67,12 +68,14 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <h4 class="title"><a href="{{route('blog.single', $post->slug)}}">{{ $post->title }}</a></h4>
+                                    <h4 class="title"><a
+                                            href="{{ route('blog.single', $post->slug) }}">{{ $post->title }}</a></h4>
                                     <div class="post-meta-wrapper">
                                         <div class="post-meta">
                                             <div class="content">
                                                 <h6 class="post-author-name">
-                                                    <a class="hover-flip-item-wrapper" href="{{route('blog.user', $post->user->username)}}">
+                                                    <a class="hover-flip-item-wrapper"
+                                                        href="{{ route('blog.user', $post->user->username) }}">
                                                         <span class="hover-flip-item">
                                                             <span
                                                                 data-text="{{ $post->user->name }}">{{ $post->user->name }}</span>
@@ -100,7 +103,7 @@
                     @endif
 
                     {{-- Pagination --}}
-                    <div class="mt-5">{{$posts->links('vendor.pagination.bootstrap-5')}}</div>
+                    <div class="mt-5">{{ $posts->links('vendor.pagination.bootstrap-5') }}</div>
 
                 </div>
                 <div class="col-lg-4 col-xl-4 mt_md--40 mt_sm--40">

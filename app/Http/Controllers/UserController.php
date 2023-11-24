@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -103,6 +104,7 @@ class UserController extends Controller
     {
         if (Auth::check()) {
             $data['title'] = 'Dashboard';
+            $data['totalposts'] = Post::count('id');
             $data['totalusers'] = User::count('id');
             return view('admin.auth.dashboard',$data);
         }
@@ -116,8 +118,10 @@ class UserController extends Controller
     public function profile()
     {
         if (Auth::check()) {
-            $data['user'] = auth()->user();
             $data['title'] = 'Profile';
+            $data['user'] = auth()->user();
+            $data['posts'] = auth()->user()->posts()->paginate(5);
+            $data['counts'] = Post::count('id');
             return view('admin.user.profile', $data);
         }
 
