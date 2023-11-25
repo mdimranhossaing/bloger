@@ -38,13 +38,14 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
 
+                @if (auth()->user()->user_role === 'admin')
                 {{-- Dashboard Menu --}}
                 <li class="nav-item {{ request()->segment('1') == 'dashboard' ? 'menu-open' : '' }}">
                     <a href="{{ route('dashboard') }}"
                         class="nav-link {{ request()->segment('1') == 'dashboard' ? 'active' : '' }}">
                         <i class="nav-icon far fa-plus-square"></i>
                         <p>
-                            Dashboard
+                            Dashboard 
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -125,6 +126,7 @@
 
                     </ul>
                 </li>
+                @endif
 
                 {{-- Users Menu --}}
                 <li class="nav-item {{ request()->segment(1) == 'user' ? 'menu-open' : '' }}">
@@ -146,6 +148,7 @@
                             </a>
                         </li>
 
+                        @if (auth()->user()->user_role === 'admin')
                         <li class="nav-item">
                             <a href="{{ route('all.users') }}"
                                 class="nav-link {{ request()->segment(2) == 'all-users' ? 'active' : '' }}">
@@ -161,6 +164,7 @@
                                 <p>Add New User</p>
                             </a>
                         </li>
+                        @endif
 
                     </ul>
                 </li>
